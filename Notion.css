@@ -1,115 +1,108 @@
-// ==============================
-// Sélection des éléments HTML
-// ==============================
+/* ==============================
+   Styles globaux
+   ============================== */
 
-// Élément où le choix de l'ordinateur sera affiché
-let contenantChoixOrdinateur = document.getElementById('choix-ordinateur');
-
-// Élément où le choix de l'utilisateur sera affiché
-let contenantChoixUtilisateur = document.getElementById('choix-utilisateur');
-
-// Élément où le résultat (Gagné, Perdu, Égalité) sera affiché
-let contenantResultat = document.getElementById('resultat');
-
-// Sélection de tous les boutons dans la zone de choix
-let choixPossibles = document.querySelectorAll('.bouttons_choix_jeu button');
-
-// Variables pour stocker les choix et le résultat
-let ChoixUtilisateur;
-let ChoixOrdinateur;
-let resultat;
-
-// ==============================
-// Gestion des clics sur les boutons
-// ==============================
-
-// Ajouter un événement à chaque bouton de choix
-choixPossibles.forEach(choix => {
-    choix.addEventListener('click', (e) => {
-        // Récupérer l'ID du bouton cliqué (correspondant au choix de l'utilisateur)
-        ChoixUtilisateur = e.target.id;
-
-        // Afficher une image correspondant au choix de l'utilisateur
-        contenantChoixUtilisateur.innerHTML = `<img src="${ChoixUtilisateur}.PNG" alt="${ChoixUtilisateur}">`;
-
-        // Générer un choix aléatoire pour l'ordinateur
-        generer_choix_ordinateur();
-
-        // Afficher une image correspondant au choix de l'ordinateur
-        contenantChoixOrdinateur.innerHTML = `<img src="${ChoixOrdinateur}.PNG" alt="${ChoixOrdinateur}">`;
-
-        // Vérifier le résultat (Gagné, Perdu, ou Égalité)
-        verification();
-    });
-});
-
-// ==============================
-// Fonction pour générer un choix aléatoire pour l'ordinateur
-// ==============================
-
-function generer_choix_ordinateur() {
-    // Générer un nombre aléatoire entre 0 et 2
-    let random = Math.floor(Math.random() * 3);
-
-    // Associer le nombre aléatoire à un choix
-    if (random === 0) {
-        ChoixOrdinateur = 'pierre';
-    } else if (random === 1) {
-        ChoixOrdinateur = 'papier';
-    } else {
-        ChoixOrdinateur = 'ciseaux';
-    }
+/* Réinitialiser les marges, les paddings et configurer la boîte de taille */
+* {
+    margin: 0px; /* Supprimer les marges par défaut */
+    padding: 0px; /* Supprimer les paddings par défaut */
+    box-sizing: border-box; /* Inclure les bordures et paddings dans les dimensions */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police par défaut */
 }
 
-// ==============================
-// Fonction pour vérifier le résultat
-// ==============================
+/* ==============================
+   Styles pour le body
+   ============================== */
 
-function verification() {
-    // Cas d'égalité
-    if (ChoixUtilisateur === ChoixOrdinateur) {
-        resultat = "Égalité";
+body {
+    /* Arrière-plan dégradé avec support pour anciens et nouveaux navigateurs */
+    background: #833ab4; /* Couleur de secours pour anciens navigateurs */
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* Chrome, Safari */
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, navigateurs modernes */
 
-    // Cas où l'utilisateur perd
-    } else if (
-        (ChoixUtilisateur === "pierre" && ChoixOrdinateur === "papier") ||
-        (ChoixUtilisateur === "papier" && ChoixOrdinateur === "ciseaux") ||
-        (ChoixUtilisateur === "ciseaux" && ChoixOrdinateur === "pierre")
-    ) {
-        resultat = "Perdu";
-
-    // Cas où l'utilisateur gagne
-    } else {
-        resultat = "Gagné";
-    }
-
-    // Afficher le résultat dans l'élément prévu
-    contenantResultat.textContent = resultat;
+    /* Configuration de l'affichage */
+    display: flex; /* Flexbox pour aligner le contenu */
+    align-items: center; /* Centrer verticalement */
+    justify-content: center; /* Centrer horizontalement */
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+    flex-direction: column; /* Disposer les enfants en colonne */
 }
 
-// ==============================
-// Gestion du son avec le bouton de contrôle
-// ==============================
+/* ==============================
+   Styles pour la section principale
+   ============================== */
 
-// Sélection des éléments audio et bouton
-const audioPlayer = document.getElementById('audioPlayer'); // Élément audio
-const musicButton = document.getElementById('Music'); // Bouton pour contrôler le son
+section {
+    display: flex; /* Utiliser Flexbox */
+    flex-direction: column; /* Disposer les éléments en colonne */
+    align-items: center; /* Centrer les éléments horizontalement */
+    width: 700px; /* Largeur fixe */
+    background-color: white; /* Fond blanc */
+    padding: 25px; /* Espacement interne */
+    box-shadow: 0 0 10px black; /* Ombre pour donner de la profondeur */
+    border-radius: 6px; /* Coins arrondis */
+}
 
-// Écouter les clics sur le bouton de contrôle de la musique
-musicButton.addEventListener('click', () => {
-    // Vérifier si l'audio est en lecture
-    if (audioPlayer.paused) {
-        audioPlayer.play(); // Lancer la lecture
-        musicButton.textContent = "🔇"; // Changer l'icône en mode muet
-    } else {
-        audioPlayer.pause(); // Mettre en pause
-        musicButton.textContent = "🎵"; // Remettre l'icône en mode lecture
-    }
-});
+/* ==============================
+   Styles pour la zone des choix
+   ============================== */
 
-// ==============================
-// Lecture automatique du son au chargement de la page
-// ==============================
+.choix {
+    display: flex; /* Utiliser Flexbox */
+    width: 100%; /* Prendre toute la largeur disponible */
+    justify-content: space-between; /* Espacer les éléments */
+}
 
- audioPlayer.play();
+.choix h4 {
+    display: flex; /* Utiliser Flexbox */
+    flex-direction: column; /* Disposer les éléments en colonne */
+    align-items: center; /* Centrer les éléments horizontalement */
+    text-transform: uppercase; /* Convertir le texte en majuscules */
+    color: black; /* Couleur argentée pour le texte */
+    font-weight: bold;
+}
 
+/* ==============================
+   Styles pour les images
+   ============================== */
+
+img {
+    width: 60px; /* Largeur fixe des images */
+    height: 60px; /* Hauteur fixe des images */
+    margin: 20px 0; /* Espacement vertical autour des images */
+}
+
+/* ==============================
+   Styles pour les boutons
+   ============================== */
+
+button {
+    padding: 5px 30px; /* Espacement interne (vertical et horizontal) */
+    margin-top: 20px; /* Espacement au-dessus */
+    border: 1px solid; /* Bordure fine */
+    background-color: aqua; /* Fond couleur aqua */
+    color: black; /* Couleur du texte noire */
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
+    border-radius: 6px; /* Coins arrondis */
+    transition: 0.5s; /* Transition pour les changements de style */
+    text-transform: capitalize; /* Première lettre en majuscule */
+}
+
+/* Styles pour le bouton au focus (lorsqu'il est sélectionné) */
+button:focus {
+    background: white; /* Changer le fond en blanc */
+    color: aqua; /* Couleur du texte aqua */
+    font-weight: bold; /* Texte toujours en gras */
+}
+
+
+img {
+    border-radius: 50%; /* Images en cercle */
+    border: 2px solid silver; /* Bordure argentée */
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: rotate(10deg) scale(1.1); /* Légère rotation et agrandissement */
+}
