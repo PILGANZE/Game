@@ -1,47 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+    <!-- ==============================
+         Métadonnées du document
+         ============================== -->
+
+    <!-- Encodage des caractères -->
     <meta charset="UTF-8">
+
+    <!-- Configuration pour un affichage réactif -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Léhèn-Haldin EFFA – ANDA">
+
+    <!-- Auteur du document -->
+    <meta name="author" content="Pilganze">
+
+    <!-- Directives pour les moteurs de recherche -->
     <meta name="robots" content="index, follow">
-    <meta name="description" content="Bonjour. Découvrez une version web du célèbre jeu , pierre papier ciseaux. De plus c’est gratuit.">
+
+    <!-- Description pour le SEO -->
+    <meta name="description" content="Bonjour. Découvrez une version web du célèbre jeu, pierre papier ciseaux. De plus, c’est gratuit.">
+
+    <!-- Icône du site -->
     <link rel="icon" href="Fusée.webp" type="image/webp">
+
+    <!-- Lien vers la feuille de style -->
     <link rel="stylesheet" href="Notion.css">
+
+    <!-- Lien vers le fichier JavaScript avec 'defer' pour charger après le DOM -->
     <script src="Scripteur.js" defer></script>
-    <title>Pierre-Papier-Ciseaux  🎮</title>
-    
+
+    <!-- Titre affiché dans l'onglet du navigateur -->
+    <title>Pierre-Papier-Ciseaux 🎮</title>
 </head>
+
 <body>
-<audio src="OST.mp3" autoplay loop>
-Votre navigateur ne supporte pas l'élément audio.
- </audio>
+    <!-- ==============================
+         Section principale du jeu
+         ============================== -->
+    <section>
+        <!-- Affichage des choix -->
+        <div class="choix">
+            <!-- Affichage du choix de l'utilisateur -->
+            <h4>Vous : <span id="choix-utilisateur"></span></h4>
+            <!-- Affichage du choix de l'ordinateur -->
+            <h4>Ordinateur : <span id="choix-ordinateur"></span></h4>
+        </div>
 
- <section>
+        <!-- Affichage du résultat du jeu -->
+        <h4>Résultat : <span id="resultat"></span></h4>
 
-<div class="choix">
+        <!-- Boutons pour jouer -->
+        <div class="bouttons_choix_jeu">
+            <button id="pierre">Pierre</button> <!-- Bouton pour choisir Pierre -->
+            <button id="papier">Papier</button> <!-- Bouton pour choisir Papier -->
+            <button id="ciseaux">Ciseaux</button> <!-- Bouton pour choisir Ciseaux -->
+        </div>
 
-
-<h4>Vous <span> </span></h4>
-<h4>Ordinateur<span> </span></h4>
-
-</div>
-
-<h4><span id ="resultat"></span></h4>
-
-<div class="bouttons_choix_jeu">
-
-<button id ="pierre">Pierre</button>
-<button id ="papier">Papier</button>
-<button id ="Ciseaux">Ciseaux</button>
-
-
-</div>
- </section>
-
-
-
-
-
+        <!-- Lecture audio et bouton de contrôle -->
+        <audio id="audioPlayer" src="OST.mp3" autoplay loop></audio>
+        <button id="Music" title="Appuyer pour couper ou lancer la musique.">🎵</button>
+    </section>
 </body>
+
 </html>
